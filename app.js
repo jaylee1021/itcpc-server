@@ -15,8 +15,11 @@ app.get('/', (req, res) => {
     return res.json({ message: 'Welcome to my API' });
 });
 
-app.use('/posts', require('./controllers/posts'));
+app.use('/sermons', require('./controllers/sermons'));
 app.use('/users', require('./controllers/users'));
+app.use('/photos', require('./controllers/photos'));
+app.use('/bulletins', require('./controllers/bulletins'));
+
 
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
