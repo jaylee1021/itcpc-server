@@ -4,17 +4,9 @@ const mongoose = require('mongoose');
 const userSchema = new mongoose.Schema({
     firstName: String,
     lastName: String,
+    userName: { type: String, required: true, unique: true },
     email: { type: String, required: true, unique: true },
-    jobTitle: String,
-    birthdate: Date,
     password: { type: String, required: true },
-    address: {
-        streetAddress: String,
-        city: String,
-        state: String,
-        zipCode: Number
-    },
-    number: String
 }, { timestamps: true });
 
 // create model
