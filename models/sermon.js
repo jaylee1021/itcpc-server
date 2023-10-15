@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
 
 const sermonSchema = new mongoose.Schema({
-    url: { type: String, required: true, unique: true },
+    embed: { type: String, required: true, unique: true },
     preacher: { type: String, required: true },
+    session: { type: String, required: true },
     snap: String,
     date: { type: Date, required: true },
     title: { type: String, required: true },

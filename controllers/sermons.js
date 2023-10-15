@@ -45,9 +45,11 @@ router.get('/:id', (req, res) => {
 // POST route for /sermons/new
 router.post('/new', (req, res) => {
     const newSermon = {
-        url: req.body.url,
+        embed: req.body.embed,
         preacher: req.body.preacher,
+        session: req.body.session,
         date: req.body.date,
+        snap: req.body.snap,
         title: req.body.title,
         passage: req.body.passage
     };
@@ -62,10 +64,24 @@ router.post('/new', (req, res) => {
         })
         .catch(error => {
             console.log('error', error);
-            return res.json({ message: 'this is an issue, please try again' });
+            return res.json({ message: 'there is an issue, please try again' });
         });
 });
 
+router.put('/:id', (req, res) => {
+    Sermon.findByIdAndUpdate(req.params.id, req.body, { new: true })
+        .then(sermon => {
+            if (sermon) {
+                return res.json({ message: 'updated', sermon: sermon });
+            } else {
+                return res.json({ message: 'No sermon exists' });
+            }
+        })
+        .catch(error => {
+            console.log('error', error);
+            return res.json({ message: 'There was an issue, please try again' });
+        });
+});
 
 // find the sermon
 // find the comment
