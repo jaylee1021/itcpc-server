@@ -26,6 +26,22 @@ router.get('/', (req, res) => {
         });
 });
 
+// GET route for /sermons
+router.get('/firstSession', (req, res) => {
+    Sermon.find({ session: 'first' })
+        .then(sermons => {
+            if (sermons) {
+                return res.json({ sermons: sermons });
+            } else {
+                return res.json({ message: 'No sermons exists' });
+            }
+        })
+        .catch(error => {
+            console.log('error', error);
+            return res.json({ message: 'this is an issue, please try again' });
+        });
+});
+
 // GET route for /sermons/:id
 router.get('/:id', (req, res) => {
     Sermon.findById(req.params.id)
