@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const photoSchema = new mongoose.Schema({
     url: { type: String, required: true },
     event: { type: String, required: true },
+    snap: String,
     group: { type: String, required: true },
     date: { type: Date, required: true },
     title: String
