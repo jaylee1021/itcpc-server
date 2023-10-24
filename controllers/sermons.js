@@ -27,8 +27,8 @@ router.get('/', (req, res) => {
 });
 
 // GET route for /sermons
-router.get('/firstSession', (req, res) => {
-    Sermon.find({ session: 'first' })
+router.get('/:session', (req, res) => {
+    Sermon.find({ session: req.params.session })
         .then(sermons => {
             if (sermons) {
                 return res.json({ sermons: sermons });
@@ -69,6 +69,7 @@ router.post('/new', (req, res) => {
         title: req.body.title,
         passage: req.body.passage
     };
+    console.log('newSermon', newSermon);
     Sermon.create(newSermon)
         .then(sermon => {
             if (sermon) {
