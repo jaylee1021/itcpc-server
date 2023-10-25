@@ -100,6 +100,21 @@ router.put('/:id', (req, res) => {
         });
 });
 
+router.delete('/:id', (req, res) => {
+    Sermon.findByIdAndDelete(req.params.id)
+        .then(sermon => {
+            if (sermon) {
+                return res.json({ message: 'deleted', sermon: sermon });
+            } else {
+                return res.json({ message: 'No sermon exists' });
+            }
+        })
+        .catch(error => {
+            console.log('error', error);
+            return res.json({ message: 'There was an issue, please try again' });
+        });
+});
+
 // find the sermon
 // find the comment
 // update the comment
