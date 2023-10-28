@@ -7,7 +7,8 @@ const sermonSchema = new mongoose.Schema({
     snap: String,
     date: { type: Date, required: true },
     title: { type: String, required: true },
-    passage: { type: String, required: true }
+    passage: { type: String, required: true },
+    together: { type: String }
 }, { timestamps: true });
 
 const Sermon = mongoose.model('Sermon', sermonSchema);

@@ -67,21 +67,28 @@ router.post('/new', (req, res) => {
         date: req.body.date,
         snap: req.body.snap,
         title: req.body.title,
-        passage: req.body.passage
+        passage: req.body.passage,
+        together: req.body.preacher + req.body.session + req.body.title + req.body.passage + req.body.date.split('T')[0]
     };
-    console.log('newSermon', newSermon);
-    Sermon.create(newSermon)
+    Sermon.findOne({ embed: newSermon.embed })
         .then(sermon => {
             if (sermon) {
-                console.log('new sermon was created', sermon);
-                return res.json({ sermon: sermon });
+                return res.json({ message: 'sermon already exists' });
             } else {
-                return res.json({ message: 'No sermon exists' });
+                Sermon.create(newSermon)
+                    .then(sermon => {
+                        if (sermon) {
+                            console.log('new sermon was created', sermon);
+                            return res.json({ sermon: sermon });
+                        } else {
+                            return res.json({ message: 'No sermon exists' });
+                        }
+                    })
+                    .catch(error => {
+                        console.log('error', error);
+                        return res.json({ message: 'there is an issue, please try again' });
+                    });
             }
-        })
-        .catch(error => {
-            console.log('error', error);
-            return res.json({ message: 'there is an issue, please try again' });
         });
 });
 
