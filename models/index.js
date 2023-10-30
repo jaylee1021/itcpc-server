@@ -6,6 +6,7 @@ const Sermon = require('./sermon');
 const Photo = require('./photo');
 const Bulletin = require('./bulletin');
 const User = require('./user');
+const Board = require('./board');
 
 console.log('mongo uri =>', process.env.MONGO_URI);
 
@@ -32,5 +33,6 @@ module.exports = {
     Sermon,
     Photo,
     Bulletin,
-    User
+    User,
+    Board
 };

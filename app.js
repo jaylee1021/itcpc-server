@@ -19,6 +19,7 @@ app.use('/sermons', require('./controllers/sermons'));
 app.use('/users', require('./controllers/users'));
 app.use('/photos', require('./controllers/photos'));
 app.use('/bulletins', require('./controllers/bulletins'));
+app.use('/boards', require('./controllers/boards'));
 
 
 const PORT = process.env.PORT || 8000;
