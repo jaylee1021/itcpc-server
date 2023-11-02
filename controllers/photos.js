@@ -47,9 +47,11 @@ router.post('/new', (req, res) => {
     const newPhoto = {
         url: req.body.url,
         event: req.body.event,
+        snap: req.body.snap,
         group: req.body.group,
         date: req.body.date,
-        title: req.body.title
+        title: req.body.title,
+        together: req.body.event + req.body.group + req.body.date + req.body.title
     };
     Photo.create(newPhoto)
         .then(photo => {
