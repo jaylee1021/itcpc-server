@@ -3,6 +3,7 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const { faker } = require('@faker-js/faker');
 const { createRandomUser } = require('./utils');
+const axios = require('axios');
 
 // import our models
 const { User, Sermon, Photo, Bulletin } = require('./models');
@@ -159,3 +160,67 @@ db.on('error', (err) => {
 //     .catch(error => {
 //         console.log(error);
 //     });
+
+
+
+
+function getImages() {
+    axios.get(`https://${process.env.cloudinary_api_key}:${process.env.cloudinary_api_value}@api.cloudinary.com/v1_1/instaversecloud/resources/image/tags/2023VBS?max_results=500`)
+        .then(res => {
+
+            const results = res.data.resources;
+            console.log(results);
+            for (let result in results) {
+                console.log(results[result].secure_url);
+                let url = results[result].secure_url;
+                let event = '2023VBS';
+                let date = '2023-06-26';
+                let title = '2023 VBS';
+                Photo.create({
+                    url: url,
+                    event: event,
+                    title: title,
+                    together: event + title + date
+                })
+                    .then(photo => {
+                        console.log('new photo created', photo);
+                    })
+                    .catch(error => {
+                        console.log('error', error);
+                    });
+            }
+        }
+        )
+        .catch(err => {
+            console.log(err);
+        });
+
+}
+
+getImages();
+
+// function listResources(next_cursor) {
+//     if (next_cursor) {
+//         options["next_cursor"] = next_cursor;
+//     }
+//     console.log(options);
+//     api.cloudinary.com / v1_1 / instaversecloud / resources(options, function (error, res) {
+//         if (error) {
+//             console.log(error);
+//         }
+//         var more = res.next_cursor;
+//         resources = res.resources;
+
+//         for (var res in resources) {
+//             res = resources[res];
+//             var resultTemp = [];
+//             var url = res.secure_url;
+//             resultTemp.push(url);
+//             result.push(resultTemp);
+//         }
+
+//         if (more) { listResources(more); }
+//         else { console.log("done"); }
+//     });
+// }
+// listResources(null);
