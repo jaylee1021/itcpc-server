@@ -8,6 +8,8 @@ const photoSchema = new mongoose.Schema({
     group: String,
     date: Date,
     title: String,
+    width: Number,
+    height: Number,
     together: String
 }, { timestamps: true });
 

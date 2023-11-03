@@ -165,32 +165,52 @@ db.on('error', (err) => {
 
 
 function getImages() {
-    axios.get(`https://${process.env.cloudinary_api_key}:${process.env.cloudinary_api_value}@api.cloudinary.com/v1_1/instaversecloud/resources/image/tags/2023VBS?max_results=500`)
+    axios.get(`https://${process.env.cloudinary_api_key}:${process.env.cloudinary_api_value}@api.cloudinary.com/v1_1/instaversecloud/resources/image/tags/2023picnic?max_results=500`)
         .then(res => {
 
             const results = res.data.resources;
-            console.log(results);
+            const photosToImport = [];
+            // for (let result in results) {
+            //     let item = results[result];
+            //     if (item.width < item.height) {
+            //         photosToImport.push(item);
+            //     }
+            // }
+
             for (let result in results) {
-                console.log(results[result].secure_url);
-                let url = results[result].secure_url;
-                let event = '2023VBS';
-                let date = '2023-06-26';
-                let title = '2023 VBS';
+                let item = results[result];
+                if (item.width > item.height || item.width === item.height) {
+                    photosToImport.unshift(item);
+                }
+            }
+
+            for (let photo in photosToImport) {
+                let url = photosToImport[photo].secure_url;
+                let event = '2023picnic';
+                let date = '2023-07-16';
+                let title = '2023 피크닉';
+                let width = photosToImport[photo].width;
+                let height = photosToImport[photo].height;
+
                 Photo.create({
                     url: url,
                     event: event,
                     title: title,
+                    width: width,
+                    height: height,
                     together: event + title + date
                 })
                     .then(photo => {
-                        console.log('new photo created', photo);
+                        // console.log('new photo created', photo);
+                        console.log('completed');
                     })
                     .catch(error => {
                         console.log('error', error);
                     });
             }
-        }
-        )
+        })
+
+
         .catch(err => {
             console.log(err);
         });

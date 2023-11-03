@@ -56,7 +56,7 @@ router.post('/new', (req, res) => {
     Photo.create(newPhoto)
         .then(photo => {
             if (photo) {
-                console.log('new photo was created', photo);
+                // console.log('new photo was created', photo);
                 return res.json({ photo: photo });
             } else {
                 return res.json({ message: 'No photo exists' });
