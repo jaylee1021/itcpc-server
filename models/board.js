@@ -6,7 +6,6 @@ const boardSchema = new mongoose.Schema({
     title: { type: String, required: true },
     snap: { type: String, required: true },
     eventDate: String,
-    count: Number
 }, { timestamps: true });
 
 // create the model
