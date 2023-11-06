@@ -28,7 +28,15 @@ router.get('/', (req, res) => {
 
 // GET route for /sermons
 router.get('/:session', (req, res) => {
-    Sermon.find({ session: req.params.session })
+    let session;
+    if (req.params.session === '1st') {
+        session = '1부';
+    } else if (req.params.session === '2nd') {
+        session = '2부';
+    } else if (req.params.session === '3rd') {
+        session = '3부';
+    }
+    Sermon.find({ session: session })
         .then(sermons => {
             if (sermons) {
                 return res.json({ sermons: sermons });
