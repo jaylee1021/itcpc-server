@@ -24,7 +24,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:order', (req, res) => {
-    Order.find({ order: order })
+    History.find({ order: order })
         .then(orders => {
             if (orders) {
                 return res.json({ orders: orders });
