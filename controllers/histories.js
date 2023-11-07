@@ -42,7 +42,7 @@ router.get('/:id', (req, res) => {
 router.post('/new', (req, res) => {
     const newHistory = {
         date: req.body.date,
-        event: req.body.event,
+        event_description: req.body.event_description,
         order: req.body.order
     };
     History.create(newHistory)
@@ -67,8 +67,8 @@ router.put('/:id', (req, res) => {
         updateQuery.date = req.body.date;
     }
 
-    if (req.body.event) {
-        updateQuery.event = req.body.event;
+    if (req.body.event_description) {
+        updateQuery.event_description = req.body.event_description;
     }
 
     if (req.body.order) {
