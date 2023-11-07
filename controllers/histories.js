@@ -23,6 +23,21 @@ router.get('/', (req, res) => {
         });
 });
 
+router.get('/:order', (req, res) => {
+    Order.find({ order: order })
+        .then(orders => {
+            if (orders) {
+                return res.json({ orders: orders });
+            } else {
+                return res.json({ message: 'No orders exists' });
+            }
+        })
+        .catch(error => {
+            console.log('error', error);
+            return res.json({ message: 'this is an issue, please try again' });
+        });
+});
+
 router.get('/:id', (req, res) => {
     History.findById(req.params.id)
         .then(history => {
