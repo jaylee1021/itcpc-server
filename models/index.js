@@ -7,6 +7,7 @@ const Photo = require('./photo');
 const Bulletin = require('./bulletin');
 const User = require('./user');
 const Board = require('./board');
+const History = require('./history');
 
 console.log('mongo uri =>', process.env.MONGO_URI);
 
@@ -34,5 +35,6 @@ module.exports = {
     Photo,
     Bulletin,
     User,
-    Board
+    Board,
+    History
 };
