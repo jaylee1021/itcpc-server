@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 
 const historySchema = new mongoose.Schema({
     date: { type: String, required: true },
-    event: { type: String, required: true }
+    event: { type: String, required: true },
+    order: { type: Number, required: true }
 }, { timestamps: true });
 
 // create model

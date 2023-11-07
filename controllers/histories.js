@@ -43,6 +43,7 @@ router.post('/new', (req, res) => {
     const newHistory = {
         date: req.body.date,
         event: req.body.event,
+        order: req.body.order
     };
     History.create(newHistory)
         .then(history => {
@@ -68,6 +69,10 @@ router.put('/:id', (req, res) => {
 
     if (req.body.event) {
         updateQuery.event = req.body.event;
+    }
+
+    if (req.body.order) {
+        updateQuery.order = req.body.order;
     }
 
     History.findByIdAndUpdate(req.params.id, { $set: updateQuery }, { new: true })
