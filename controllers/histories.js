@@ -25,11 +25,11 @@ router.get('/', (req, res) => {
 
 router.get('/:order', (req, res) => {
     History.find({ order: req.params.order })
-        .then(orders => {
-            if (orders) {
-                return res.json({ orders: orders });
+        .then(histories => {
+            if (histories) {
+                return res.json({ histories: histories });
             } else {
-                return res.json({ message: 'No orders exists' });
+                return res.json({ message: 'No histories exists' });
             }
         })
         .catch(error => {
