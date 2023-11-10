@@ -6,7 +6,8 @@ const missionGroupSchema = new mongoose.Schema({
     vicePresident: { type: String, required: true },
     secretary: String,
     clerk: String,
-    accounting: String
+    accounting: String,
+    together: String
 }, { timestamps: true });
 
 // create model

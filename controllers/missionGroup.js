@@ -60,22 +60,21 @@ router.get('/:id', (req, res) => {
 
 // POST route for /missionGroups/new
 router.post('/new', (req, res) => {
-    const newSermon = {
-        embed: req.body.embed,
-        preacher: req.body.preacher,
-        missionGroup: req.body.missionGroup,
-        date: req.body.date,
-        snap: req.body.snap,
-        title: req.body.title,
-        passage: req.body.passage,
-        together: req.body.preacher + req.body.missionGroup + req.body.title + req.body.passage + req.body.date.split('T')[0]
+    const newMissionGroup = {
+        groupName: req.body.groupName,
+        president: req.body.president,
+        vicePresident: req.body.vicePresident,
+        secretary: req.body.secretary,
+        clerk: req.body.clerk,
+        accounting: req.body.accounting,
+        together: req.body.groupName + req.body.president + req.body.vicePresident + req.body.secretary + req.body.clerk + req.body.accounting
     };
-    MissionGroup.findOne({ embed: newSermon.embed })
+    MissionGroup.findOne({ groupName: newMissionGroup.groupName })
         .then(missionGroup => {
             if (missionGroup) {
                 return res.json({ message: 'missionGroup already exists' });
             } else {
-                MissionGroup.create(newSermon)
+                MissionGroup.create(newMissionGroup)
                     .then(missionGroup => {
                         if (missionGroup) {
                             console.log('new missionGroup was created', missionGroup);
