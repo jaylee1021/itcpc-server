@@ -21,6 +21,7 @@ app.use('/photos', require('./controllers/photos'));
 app.use('/bulletins', require('./controllers/bulletins'));
 app.use('/boards', require('./controllers/boards'));
 app.use('/histories', require('./controllers/histories'));
+app.use('/missionGroups', require('./controllers/missionGroups'));
 
 
 const PORT = process.env.PORT || 8000;
