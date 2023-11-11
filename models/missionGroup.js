@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const missionGroupSchema = new mongoose.Schema({
     groupName: { type: String, required: true },
     president: { type: String, required: true },
-    vicePresident: { type: String, required: true },
+    vicePresident: String,
     secretary: String,
     clerk: String,
     accounting: String,
