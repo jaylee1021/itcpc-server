@@ -26,7 +26,7 @@ router.get('/', (req, res) => {
         });
 });
 
-// GET route for /missionGroups
+// GET route for /gender
 router.get('/:gender', (req, res) => {
     MissionGroup.find({ gender: gender })
         .then(missionGroups => {
@@ -42,21 +42,21 @@ router.get('/:gender', (req, res) => {
         });
 });
 
-// GET route for /missionGroups
-router.get('/:missionGroup', (req, res) => {
-    MissionGroup.find({ missionGroup: missionGroup })
-        .then(missionGroups => {
-            if (missionGroups) {
-                return res.json({ missionGroups: missionGroups });
-            } else {
-                return res.json({ message: 'No missionGroups exists' });
-            }
-        })
-        .catch(error => {
-            console.log('error', error);
-            return res.json({ message: 'this is an issue, please try again' });
-        });
-});
+// // GET route for /missionGroups
+// router.get('/:missionGroup', (req, res) => {
+//     MissionGroup.find({ missionGroup: missionGroup })
+//         .then(missionGroups => {
+//             if (missionGroups) {
+//                 return res.json({ missionGroups: missionGroups });
+//             } else {
+//                 return res.json({ message: 'No missionGroups exists' });
+//             }
+//         })
+//         .catch(error => {
+//             console.log('error', error);
+//             return res.json({ message: 'this is an issue, please try again' });
+//         });
+// });
 
 // GET route for /missionGroups/:id
 router.get('/:id', (req, res) => {
