@@ -28,7 +28,7 @@ router.get('/', (req, res) => {
 
 // GET route for /gender
 router.get('/:gender', (req, res) => {
-    MissionGroup.find({ gender: gender })
+    MissionGroup.find({ gender: req.params.gender })
         .then(missionGroups => {
             if (missionGroups) {
                 return res.json({ missionGroups: missionGroups });
