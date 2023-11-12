@@ -7,6 +7,7 @@ const missionGroupSchema = new mongoose.Schema({
     secretary: String,
     clerk: String,
     accounting: String,
+    gender: String,
     together: String
 }, { timestamps: true });
 
