@@ -165,7 +165,7 @@ db.on('error', (err) => {
 
 
 function getImages() {
-    axios.get(`https://${process.env.cloudinary_api_key}:${process.env.cloudinary_api_value}@api.cloudinary.com/v1_1/instaversecloud/resources/image/tags/2023_appointment?max_results=500`)
+    axios.get(`https://${process.env.cloudinary_api_key}:${process.env.cloudinary_api_value}@api.cloudinary.com/v1_1/instaversecloud/resources/image/tags/2022_appointment?max_results=500`)
         .then(res => {
 
             const results = res.data.resources;
@@ -186,9 +186,9 @@ function getImages() {
 
             for (let photo in photosToImport) {
                 let url = photosToImport[photo].secure_url;
-                let event = '2023appointment';
-                let date = '2023-01-01';
-                let title = '2023 임직식';
+                let event = '2022appointment';
+                let date = '2022-01-02';
+                let title = '2022 신년 임직식';
                 let width = photosToImport[photo].width;
                 let height = photosToImport[photo].height;
 
