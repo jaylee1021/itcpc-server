@@ -27,12 +27,12 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:eventName', (req, res) => {
-    Photo.find({ eventEngName: req.params.eventName })
-        .then(photos => {
-            if (photos) {
-                return res.json({ photos: photos });
+    GalleryThumbnail.find({ eventEngName: req.params.eventName })
+        .then(galleryThumbnails => {
+            if (galleryThumbnails) {
+                return res.json({ galleryThumbnails: galleryThumbnails });
             } else {
-                return res.json({ message: 'No photos exists' });
+                return res.json({ message: 'No galleryThumbnails exists' });
             }
         })
         .catch(error => {
