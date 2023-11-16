@@ -8,7 +8,6 @@ const sermonSchema = new mongoose.Schema({
     date: { type: Date, required: true },
     title: { type: String, required: true },
     passage: { type: String, required: true },
-    count: Number,
     together: { type: String }
 }, { timestamps: true });
 

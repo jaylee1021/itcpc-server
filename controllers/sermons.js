@@ -76,7 +76,6 @@ router.post('/new', (req, res) => {
         snap: req.body.snap,
         title: req.body.title,
         passage: req.body.passage,
-        count: 0,
         together: req.body.preacher + req.body.session + req.body.title + req.body.passage + req.body.date.split('T')[0]
     };
     Sermon.findOne({ embed: newSermon.embed })
