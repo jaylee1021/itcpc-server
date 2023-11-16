@@ -8,6 +8,8 @@ const Bulletin = require('./bulletin');
 const User = require('./user');
 const Board = require('./board');
 const History = require('./history');
+const MissionGroup = require('./missionGroup');
+const GalleryThumbnail = require('./galleryThumbnail');
 
 console.log('mongo uri =>', process.env.MONGO_URI);
 
@@ -36,5 +38,7 @@ module.exports = {
     Bulletin,
     User,
     Board,
-    History
+    History,
+    MissionGroup,
+    GalleryThumbnail
 };

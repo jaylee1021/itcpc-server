@@ -26,6 +26,21 @@ router.get('/', (req, res) => {
         });
 });
 
+router.get('/:event', (req, res) => {
+    Photo.find({ event: req.params.event })
+        .then(photos => {
+            if (photos) {
+                return res.json({ photos: photos });
+            } else {
+                return res.json({ message: 'No photos exists' });
+            }
+        })
+        .catch(error => {
+            console.log('error', error);
+            return res.json({ message: 'this is an issue, please try again' });
+        });
+});
+
 // GET route for /photos/:id
 router.get('/:id', (req, res) => {
     Photo.findById(req.params.id)
