@@ -7,17 +7,17 @@ const jwt = require('jsonwebtoken');
 const passport = require('passport');
 const { JWT_SECRET } = process.env;
 
-// import the Sermon model
-const { Sermon } = require('../models');
+// import the Bulletin model
+const { Bulletin } = require('../models');
 
-// GET route for /sermons
+// GET route for /bulletins
 router.get('/', (req, res) => {
-    Sermon.find({})
-        .then(sermons => {
-            if (sermons) {
-                return res.json({ sermons: sermons });
+    Bulletin.find({})
+        .then(bulletins => {
+            if (bulletins) {
+                return res.json({ bulletins: bulletins });
             } else {
-                return res.json({ message: 'No sermons exists' });
+                return res.json({ message: 'No bulletins exists' });
             }
         })
         .catch(error => {
@@ -26,14 +26,14 @@ router.get('/', (req, res) => {
         });
 });
 
-// GET route for /sermons/:id
+// GET route for /bulletins/:id
 router.get('/:id', (req, res) => {
-    Sermon.findById(req.params.id)
-        .then(sermon => {
-            if (sermon) {
-                return res.json({ sermon: sermon });
+    Bulletin.findById(req.params.id)
+        .then(bulletin => {
+            if (bulletin) {
+                return res.json({ bulletin: bulletin });
             } else {
-                return res.json({ message: 'No sermon exists' });
+                return res.json({ message: 'No bulletin exists' });
             }
         })
         .catch(error => {
@@ -42,22 +42,20 @@ router.get('/:id', (req, res) => {
         });
 });
 
-// POST route for /sermons/new
+// POST route for /bulletins/new
 router.post('/new', (req, res) => {
-    const newSermon = {
-        url: req.body.url,
-        preacher: req.body.preacher,
-        date: req.body.date,
-        title: req.body.title,
-        passage: req.body.passage
+    const newBulletin = {
+        title: '주보',
+        content: req.body.content,
+        date: req.body.date
     };
-    Sermon.create(newSermon)
-        .then(sermon => {
-            if (sermon) {
-                console.log('new sermon was created', sermon);
-                return res.json({ sermon: sermon });
+    Bulletin.create(newBulletin)
+        .then(bulletin => {
+            if (bulletin) {
+                console.log('new bulletin was created', bulletin);
+                return res.json({ bulletin: bulletin });
             } else {
-                return res.json({ message: 'No sermon exists' });
+                return res.json({ message: 'No bulletin exists' });
             }
         })
         .catch(error => {
