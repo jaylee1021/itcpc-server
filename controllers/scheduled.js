@@ -31,9 +31,9 @@ router.get('/:id', (req, res) => {
     Scheduled.findById(req.params.id)
         .then(scheduled => {
             if (scheduled) {
-                return res.json({ scheduled: board });
+                return res.json({ scheduled: scheduled });
             } else {
-                return res.json({ message: 'No board exists' });
+                return res.json({ message: 'No scheduled exists' });
             }
         })
         .catch(error => {
