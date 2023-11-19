@@ -174,7 +174,7 @@ db.on('error', (err) => {
 
 // import images from cloudinary by tags manually
 // function getImages() {
-//     axios.get(`https://${process.env.cloudinary_api_key}:${process.env.cloudinary_api_value}@api.cloudinary.com/v1_1/instaversecloud/resources/image/tags/2022_appointment?max_results=500`)
+//     axios.get(`https://${process.env.cloudinary_api_key}:${process.env.cloudinary_api_value}@api.cloudinary.com/v1_1/itcpc-home/resources/image/tags/2022_appointment?max_results=500`)
 //         .then(res => {
 
 //             const results = res.data.resources;
