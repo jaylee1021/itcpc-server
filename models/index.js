@@ -10,6 +10,7 @@ const Board = require('./board');
 const History = require('./history');
 const MissionGroup = require('./missionGroup');
 const GalleryThumbnail = require('./galleryThumbnail');
+const Scheduled = require('./scheduled');
 
 console.log('mongo uri =>', process.env.MONGO_URI);
 
@@ -40,5 +41,6 @@ module.exports = {
     Board,
     History,
     MissionGroup,
-    GalleryThumbnail
+    GalleryThumbnail,
+    Scheduled
 };

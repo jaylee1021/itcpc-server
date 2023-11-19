@@ -23,6 +23,7 @@ app.use('/boards', require('./controllers/boards'));
 app.use('/histories', require('./controllers/histories'));
 app.use('/missionGroups', require('./controllers/missionGroups'));
 app.use('/galleryThumbnails', require('./controllers/galleryThumbnails'));
+app.use('/scheduled', require('./controllers/scheduled'));
 
 
 const PORT = process.env.PORT || 8000;
