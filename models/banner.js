@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const bannerSchema = new mongoose.Schema({
     url: { type: String, required: true },
+    title: { type: String, required: true },
     show: { type: Boolean, required: true },
 }, { timestamps: true });
 

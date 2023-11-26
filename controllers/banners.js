@@ -46,6 +46,7 @@ router.get('/:id', (req, res) => {
 router.post('/new', (req, res) => {
     const newBanner = {
         url: req.body.url,
+        title: req.body.title,
         show: true
     };
     Banner.create(newBanner)
