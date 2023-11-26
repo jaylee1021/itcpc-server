@@ -44,14 +44,11 @@ router.get('/:id', (req, res) => {
 
 // POST route for /banners/new
 router.post('/new', (req, res) => {
-    const newBoard = {
+    const newBanner = {
         url: req.body.url,
-        title: req.body.title,
-        snap: req.body.snap,
-        eventDate: req.body.date,
-        count: 0
+        show: req.body.show
     };
-    Banner.create(newBoard)
+    Banner.create(newBanner)
         .then(banner => {
             if (banner) {
                 console.log('new banner was created', banner);
