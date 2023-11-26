@@ -26,6 +26,22 @@ router.get('/', (req, res) => {
         });
 });
 
+router.get('/show', (req, res) => {
+    Banner.find({ show: true })
+        .then(banners => {
+            if (banners) {
+                return res.json({ banners: banners });
+            } else {
+                return res.json({ message: 'No banners exists' });
+            }
+        })
+        .catch(error => {
+            console.log('error', error);
+            return res.json({ message: 'this is an issue, please try again' });
+        });
+});
+
+
 // GET route for /banners/:id
 router.get('/:id', (req, res) => {
     Banner.findById(req.params.id)
