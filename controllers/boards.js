@@ -48,7 +48,7 @@ router.post('/new', (req, res) => {
         url: req.body.url,
         title: req.body.title,
         snap: req.body.snap,
-        eventDate: req.body.date,
+        eventDate: req.body.eventDate,
         count: 0
     };
     Board.create(newBoard)
