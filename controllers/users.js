@@ -25,6 +25,21 @@ router.get('/', (req, res) => {
         });
 });
 
+router.get('/:id', (req, res) => {
+    User.findById(req.params.id)
+        .then(user => {
+            if (user) {
+                return res.json({ user: user });
+            } else {
+                return res.json({ message: 'No User Found' });
+            }
+        })
+        .catch(error => {
+            console.log('error', error);
+            return res.json({ message: 'There was an issue, please try again' });
+        });
+});
+
 // private
 router.get('/profile', passport.authenticate('jwt', { session: false }), (req, res) => {
     console.log('====> inside /profile');
