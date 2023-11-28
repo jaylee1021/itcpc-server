@@ -80,7 +80,7 @@ router.post('/new', (req, res) => {
         });
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
     Banner.findByIdAndUpdate(req.params.id, req.body, { new: true })
         .then(banner => {
             if (banner) {
