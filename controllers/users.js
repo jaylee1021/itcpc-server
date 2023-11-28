@@ -123,7 +123,7 @@ router.post('/login', async (req, res) => {
     console.log('===> Inside of /login');
     console.log('===> /login -> req.body', req.body);
 
-    const foundUser = await User.findOne({ email: req.body.email });
+    const foundUser = await User.findOne({ userName: req.body.userName });
 
     if (foundUser) {
         // user is in the DB
@@ -136,13 +136,7 @@ router.post('/login', async (req, res) => {
             // save the user
             const payload = {
                 id: foundUser.id,
-                email: foundUser.email,
-                firstName: foundUser.firstName,
-                lastName: foundUser.lastName,
-                address: foundUser.address,
-                birthdate: foundUser.birthdate,
-                jobTitle: foundUser.jobTitle,
-                number: foundUser.number
+                email: foundUser.email
             };
 
             jwt.sign(payload, JWT_SECRET, { expiresIn: 3600 }, (err, token) => {
