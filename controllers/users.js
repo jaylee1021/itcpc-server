@@ -151,7 +151,8 @@ router.post('/login', async (req, res) => {
             // save the user
             const payload = {
                 id: foundUser.id,
-                email: foundUser.email
+                email: foundUser.email,
+                userName: foundUser.userName
             };
 
             jwt.sign(payload, JWT_SECRET, { expiresIn: 3600 }, (err, token) => {
