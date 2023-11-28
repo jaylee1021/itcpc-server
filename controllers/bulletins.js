@@ -43,7 +43,7 @@ router.get('/:id', (req, res) => {
 });
 
 // POST route for /bulletins/new
-router.post('/new', (req, res) => {
+router.post('/new', passport.authenticate('jwt', { session: false }), (req, res) => {
     const newBulletin = {
         title: '주보',
         content: req.body.content,
@@ -64,7 +64,7 @@ router.post('/new', (req, res) => {
         });
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
     const updateQuery = {};
     // check title
     if (req.body.title) {
@@ -89,7 +89,7 @@ router.put('/:id', (req, res) => {
         });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
     Bulletin.findByIdAndDelete(req.params.id)
         .then((result) => {
             return res.json({ message: `bulletin at ${req.params.id} was delete` });

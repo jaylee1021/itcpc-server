@@ -53,8 +53,8 @@ router.get('/:id', (req, res) => {
         });
 });
 
-// POST route for /sermons/new
-router.post('/new', (req, res) => {
+// POST route for /histories/new
+router.post('/new', passport.authenticate('jwt', { session: false }), (req, res) => {
     const newHistory = {
         date: req.body.date,
         event_description: req.body.event_description,
@@ -75,7 +75,7 @@ router.post('/new', (req, res) => {
         });
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
     const updateQuery = {};
 
     if (req.body.date) {
@@ -100,7 +100,7 @@ router.put('/:id', (req, res) => {
         });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
     History.findByIdAndDelete(req.params.id)
         .then((result) => {
             return res.json({ message: `history at ${req.params.id} was delete` });

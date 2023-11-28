@@ -67,7 +67,7 @@ router.get('/:id', (req, res) => {
 });
 
 // POST route for /sermons/new
-router.post('/new', (req, res) => {
+router.post('/new', passport.authenticate('jwt', { session: false }), (req, res) => {
     const newSermon = {
         embed: req.body.embed,
         preacher: req.body.preacher,
@@ -101,7 +101,7 @@ router.post('/new', (req, res) => {
         });
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
     Sermon.findByIdAndUpdate(req.params.id, req.body, { new: true })
         .then(sermon => {
             if (sermon) {
@@ -116,7 +116,7 @@ router.put('/:id', (req, res) => {
         });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
     Sermon.findByIdAndDelete(req.params.id)
         .then(sermon => {
             if (sermon) {
@@ -130,16 +130,5 @@ router.delete('/:id', (req, res) => {
             return res.json({ message: 'There was an issue, please try again' });
         });
 });
-
-// find the sermon
-// find the comment
-// update the comment
-// print to see if it updated
-// create a request in Postman
-// if it's update, then need return as json
-
-// PUT to update comment
-
-// DELETE to remove comment
 
 module.exports = router;

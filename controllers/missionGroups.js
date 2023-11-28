@@ -42,22 +42,6 @@ router.get('/:gender', (req, res) => {
         });
 });
 
-// // GET route for /missionGroups
-// router.get('/:missionGroup', (req, res) => {
-//     MissionGroup.find({ missionGroup: missionGroup })
-//         .then(missionGroups => {
-//             if (missionGroups) {
-//                 return res.json({ missionGroups: missionGroups });
-//             } else {
-//                 return res.json({ message: 'No missionGroups exists' });
-//             }
-//         })
-//         .catch(error => {
-//             console.log('error', error);
-//             return res.json({ message: 'this is an issue, please try again' });
-//         });
-// });
-
 // GET route for /missionGroups/:id
 router.get('/:id', (req, res) => {
     MissionGroup.findById(req.params.id)
@@ -75,7 +59,7 @@ router.get('/:id', (req, res) => {
 });
 
 // POST route for /missionGroups/new
-router.post('/new', (req, res) => {
+router.post('/new', passport.authenticate('jwt', { session: false }), (req, res) => {
     const newMissionGroup = {
         groupName: req.body.groupName,
         president: req.body.president,
@@ -107,7 +91,7 @@ router.post('/new', (req, res) => {
         });
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
     MissionGroup.findByIdAndUpdate(req.params.id, req.body, { new: true })
         .then(missionGroup => {
             if (missionGroup) {
@@ -122,7 +106,7 @@ router.put('/:id', (req, res) => {
         });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
     MissionGroup.findByIdAndDelete(req.params.id)
         .then(missionGroup => {
             if (missionGroup) {
@@ -136,16 +120,5 @@ router.delete('/:id', (req, res) => {
             return res.json({ message: 'There was an issue, please try again' });
         });
 });
-
-// find the missionGroup
-// find the comment
-// update the comment
-// print to see if it updated
-// create a request in Postman
-// if it's update, then need return as json
-
-// PUT to update comment
-
-// DELETE to remove comment
 
 module.exports = router;

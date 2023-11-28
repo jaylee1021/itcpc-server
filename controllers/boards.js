@@ -43,7 +43,7 @@ router.get('/:id', (req, res) => {
 });
 
 // POST route for /boards/new
-router.post('/new', (req, res) => {
+router.post('/new', passport.authenticate('jwt', { session: false }), (req, res) => {
     const newBoard = {
         url: req.body.url,
         title: req.body.title,
@@ -66,7 +66,7 @@ router.post('/new', (req, res) => {
         });
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
     Board.findByIdAndUpdate(req.params.id, req.body, { new: true })
         .then(board => {
             if (board) {
@@ -81,7 +81,7 @@ router.put('/:id', (req, res) => {
         });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
     Board.findByIdAndDelete(req.params.id)
         .then((result) => {
             return res.json({ message: `board at ${req.params.id} was delete` });

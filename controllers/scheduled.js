@@ -43,7 +43,7 @@ router.get('/:id', (req, res) => {
 });
 
 // POST route for /scheduleds/new
-router.post('/new', (req, res) => {
+router.post('/new', passport.authenticate('jwt', { session: false }), (req, res) => {
     const newSchedule = {
         scheduled: true,
     };
@@ -62,7 +62,7 @@ router.post('/new', (req, res) => {
         });
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
     Scheduled.findByIdAndUpdate(req.params.id, req.body, { new: true })
         .then(scheduled => {
             if (scheduled) {
@@ -77,7 +77,7 @@ router.put('/:id', (req, res) => {
         });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
     Scheduled.findByIdAndDelete(req.params.id)
         .then((result) => {
             return res.json({ message: `scheduled at ${req.params.id} was delete` });

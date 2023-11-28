@@ -59,7 +59,7 @@ router.get('/:id', (req, res) => {
 });
 
 // POST route for /banners/new
-router.post('/new', (req, res) => {
+router.post('/new', passport.authenticate('jwt', { session: false }), (req, res) => {
     const newBanner = {
         url: req.body.url,
         title: req.body.title,
@@ -95,7 +95,7 @@ router.put('/:id', passport.authenticate('jwt', { session: false }), (req, res) 
         });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
     Banner.findByIdAndDelete(req.params.id)
         .then((result) => {
             return res.json({ message: `banner at ${req.params.id} was delete` });

@@ -58,7 +58,7 @@ router.get('/:id', (req, res) => {
 });
 
 // POST route for /galleryThumbnails/new
-router.post('/new', (req, res) => {
+router.post('/new', passport.authenticate('jwt', { session: false }), (req, res) => {
     const newThumb = {
         url: req.body.url,
         eventEngName: req.body.eventEngName,
@@ -81,7 +81,7 @@ router.post('/new', (req, res) => {
         });
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
     const updateQuery = {};
     // check url
     if (req.body.url) {
@@ -110,7 +110,7 @@ router.put('/:id', (req, res) => {
         });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
     GalleryThumbnail.findByIdAndDelete(req.params.id)
         .then((result) => {
             return res.json({ message: `galleryThumbnail at ${req.params.id} was delete` });
