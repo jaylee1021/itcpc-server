@@ -3,14 +3,7 @@ const mongoose = require('mongoose');
 // order schema
 const photoSchema = new mongoose.Schema({
     url: { type: String, required: true },
-    event: { type: String, required: true },
-    snap: String,
-    group: String,
-    date: Date,
-    title: String,
-    width: Number,
-    height: Number,
-    together: String
+    event: { type: String, required: true }
 }, { timestamps: true });
 
 // create the model

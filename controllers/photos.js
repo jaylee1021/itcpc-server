@@ -61,12 +61,7 @@ router.get('/:id', (req, res) => {
 router.post('/new', passport.authenticate('jwt', { session: false }), (req, res) => {
     const newPhoto = {
         url: req.body.url,
-        event: req.body.event,
-        snap: req.body.snap,
-        group: req.body.group,
-        date: req.body.date,
-        title: req.body.title,
-        together: req.body.event + req.body.group + req.body.date + req.body.title
+        event: req.body.event
     };
     Photo.create(newPhoto)
         .then(photo => {
@@ -92,18 +87,6 @@ router.put('/:id', passport.authenticate('jwt', { session: false }), (req, res) 
     // check event
     if (req.body.event) {
         updateQuery.event = req.body.event;
-    }
-    // check group
-    if (req.body.group) {
-        updateQuery.group = req.body.group;
-    }
-    // check date
-    if (req.body.date) {
-        updateQuery.date = req.body.date;
-    }
-    // check title
-    if (req.body.title) {
-        updateQuery.title = req.body.title;
     }
 
     Photo.findByIdAndUpdate(req.params.id, { $set: updateQuery }, { new: true })
