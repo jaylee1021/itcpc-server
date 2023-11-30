@@ -191,13 +191,7 @@ router.post('/new', (req, res) => {
                     firstName: req.body.firstName,
                     lastName: req.body.lastName,
                     email: req.body.email,
-                    jobTitle: req.body.jobTitle,
-                    birthdate: new Date(),
-                    "address.streetAddress": req.body.streetAddress,
-                    "address.city": req.body.city,
-                    "address.state": req.body.state,
-                    "address.zipCode": req.body.zipCode,
-                    number: req.body.number,
+                    userName: req.body.userName,
                     password: req.body.password
                 })
                     .then((newUser) => {
