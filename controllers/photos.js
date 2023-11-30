@@ -66,7 +66,6 @@ router.post('/new', passport.authenticate('jwt', { session: false }), (req, res)
     Photo.create(newPhoto)
         .then(photo => {
             if (photo) {
-                // console.log('new photo was created', photo);
                 return res.json({ photo: photo });
             } else {
                 return res.json({ message: 'No photo exists' });
@@ -95,6 +94,17 @@ router.put('/:id', passport.authenticate('jwt', { session: false }), (req, res) 
         })
         .catch((error) => {
             console.log('error inside PUT /users/:id', error);
+            return res.json({ message: 'error occured, please try again.' });
+        });
+});
+
+router.delete('/:event', (req, res) => {
+    Photo.deleteMany({ event: req.params.event })
+        .then((result) => {
+            return res.json({ message: `photo at ${req.params.id} was delete` });
+        })
+        .catch((error) => {
+            console.log('error inside DELETE /users/:id', error);
             return res.json({ message: 'error occured, please try again.' });
         });
 });
