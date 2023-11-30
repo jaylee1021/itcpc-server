@@ -98,7 +98,7 @@ router.put('/:id', passport.authenticate('jwt', { session: false }), (req, res) 
         });
 });
 
-router.delete('/:event', (req, res) => {
+router.delete('/:event', passport.authenticate('jwt', { session: false }), (req, res) => {
     Photo.deleteMany({ event: req.params.event })
         .then((result) => {
             return res.json({ message: `photo at ${req.params.id} was delete` });
