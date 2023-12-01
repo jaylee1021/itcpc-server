@@ -5,7 +5,7 @@ const galleryThumbnailSchema = new mongoose.Schema({
     url: { type: String, required: true },
     eventEngName: { type: String, required: true },
     eventKorName: { type: String, required: true },
-    eventDate: String,
+    eventDate: { type: Date, required: true },
     together: String
 }, { timestamps: true });
 
