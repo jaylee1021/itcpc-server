@@ -51,7 +51,8 @@ router.post('/new', passport.authenticate('jwt', { session: false }), (req, res)
         title: '주보',
         special_title: req.body.special_title,
         content: req.body.content,
-        date: req.body.date
+        date: req.body.date,
+        count: 0
     };
     Bulletin.create(newBulletin)
         .then(bulletin => {
@@ -81,6 +82,14 @@ router.put('/:id', (req, res) => {
     // check date
     if (req.body.date) {
         updateQuery.date = req.body.date;
+    }
+
+    if (req.body.special_title) {
+        updateQuery.special_title = req.body.special_title;
+    }
+
+    if (req.body.count) {
+        updateQuery.count = req.body.count;
     }
 
     Bulletin.findByIdAndUpdate(req.params.id, { $set: updateQuery }, { new: true })
