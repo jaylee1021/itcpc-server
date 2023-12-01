@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const bulletinSchema = new mongoose.Schema({
     title: { type: String, required: true },
+    special_title: String,
     content: { type: String, required: true },
     date: { type: Date, required: true },
 }, { timestamps: true });

@@ -15,6 +15,9 @@ router.get('/', (req, res) => {
     Bulletin.find({})
         .then(bulletins => {
             if (bulletins) {
+                bulletins.sort((a, b) => {
+                    return new Date(b.date) - new Date(a.date);
+                });
                 return res.json({ bulletins: bulletins });
             } else {
                 return res.json({ message: 'No bulletins exists' });
@@ -46,13 +49,14 @@ router.get('/:id', (req, res) => {
 router.post('/new', passport.authenticate('jwt', { session: false }), (req, res) => {
     const newBulletin = {
         title: '주보',
+        special_title: req.body.special_title,
         content: req.body.content,
         date: req.body.date
     };
     Bulletin.create(newBulletin)
         .then(bulletin => {
             if (bulletin) {
-                console.log('new bulletin was created', bulletin);
+
                 return res.json({ bulletin: bulletin });
             } else {
                 return res.json({ message: 'No bulletin exists' });
