@@ -84,7 +84,7 @@ router.post('/new', passport.authenticate('jwt', { session: false }), (req, res)
         });
 });
 
-router.put('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.put('/:id', (req, res) => {
     const updateQuery = {};
     // check url
     if (req.body.url) {

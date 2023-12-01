@@ -66,7 +66,7 @@ router.post('/new', passport.authenticate('jwt', { session: false }), (req, res)
         });
 });
 
-router.put('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.put('/:id', (req, res) => {
     Board.findByIdAndUpdate(req.params.id, req.body, { new: true })
         .then(board => {
             if (board) {

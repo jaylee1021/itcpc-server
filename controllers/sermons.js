@@ -101,7 +101,7 @@ router.post('/new', passport.authenticate('jwt', { session: false }), (req, res)
         });
 });
 
-router.put('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.put('/:id', (req, res) => {
     Sermon.findByIdAndUpdate(req.params.id, req.body, { new: true })
         .then(sermon => {
             if (sermon) {
