@@ -15,6 +15,9 @@ router.get('/', (req, res) => {
     Sermon.find({})
         .then(sermons => {
             if (sermons) {
+                sermons.sort((a, b) => {
+                    return new Date(b.date) - new Date(a.date);
+                });
                 return res.json({ sermons: sermons });
             } else {
                 return res.json({ message: 'No sermons exists' });
