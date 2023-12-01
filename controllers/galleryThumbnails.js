@@ -15,6 +15,9 @@ router.get('/', (req, res) => {
     GalleryThumbnail.find({})
         .then(galleryThumbnails => {
             if (galleryThumbnails) {
+                galleryThumbnails.sort((a, b) => {
+                    return new Date(b.eventDate) - new Date(a.eventDate);
+                });
                 return res.json({ galleryThumbnails: galleryThumbnails });
             } else {
                 return res.json({ message: 'No galleryThumbnails exists' });
