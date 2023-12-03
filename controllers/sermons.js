@@ -48,11 +48,7 @@ router.get('/:session', (req, res) => {
         .then(sermons => {
             if (sermons) {
                 sermons.sort((a, b) => {
-                    const dateComparison = new Date(b.date) - new Date(a.date);
-                    if (dateComparison === 0) {
-                        // If dates are the same, sort sessions in descending order
-                        return a.session.localeCompare(b.session);
-                    }
+                    const dateComparison = new Date(a.date) - new Date(b.date);
                     return dateComparison;
                 });
                 return res.json({ sermons: sermons });
