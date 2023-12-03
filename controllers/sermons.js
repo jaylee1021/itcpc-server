@@ -47,6 +47,14 @@ router.get('/:session', (req, res) => {
     Sermon.find({ session: session })
         .then(sermons => {
             if (sermons) {
+                sermons.sort((a, b) => {
+                    const dateComparison = new Date(b.date) - new Date(a.date);
+                    if (dateComparison === 0) {
+                        // If dates are the same, sort sessions in descending order
+                        return b.session.localeCompare(a.session);
+                    }
+                    return dateComparison;
+                });
                 return res.json({ sermons: sermons });
             } else {
                 return res.json({ message: 'No sermons exists' });
