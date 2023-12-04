@@ -12,6 +12,7 @@ const MissionGroup = require('./missionGroup');
 const GalleryThumbnail = require('./galleryThumbnail');
 const Scheduled = require('./scheduled');
 const Banner = require('./banner');
+const GlobalMission = require('./globalMission');
 
 console.log('mongo uri =>', process.env.MONGO_URI);
 
@@ -44,5 +45,6 @@ module.exports = {
     MissionGroup,
     GalleryThumbnail,
     Scheduled,
-    Banner
+    Banner,
+    GlobalMission
 };

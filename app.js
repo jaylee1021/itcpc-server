@@ -25,6 +25,7 @@ app.use('/missionGroups', require('./controllers/missionGroups'));
 app.use('/galleryThumbnails', require('./controllers/galleryThumbnails'));
 app.use('/scheduled', require('./controllers/scheduled'));
 app.use('/banners', require('./controllers/banners'));
+app.use('/globalMissions', require('./controllers/globalMissions'));
 
 
 const PORT = process.env.PORT || 8000;
