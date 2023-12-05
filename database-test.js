@@ -6,7 +6,7 @@ const { createRandomUser } = require('./utils');
 const axios = require('axios');
 
 // import our models
-const { User, Sermon, Photo, Bulletin } = require('./models');
+const { User, Sermon, Photo, Bulletin, GlobalMission } = require('./models');
 
 console.log('mongo uri =>', process.env.MONGO_URI);
 // connect to the database
@@ -173,54 +173,54 @@ db.on('error', (err) => {
 
 
 // import images from cloudinary by tags manually
-function getImages() {
-    axios.get(`https://${process.env.cloudinary_api_key}:${process.env.cloudinary_api_value}@api.cloudinary.com/v1_1/itcpc-home/resources/image/tags/2022_appointment?max_results=500`)
-        .then(res => {
+// function getImages() {
+//     axios.get(`https://${process.env.cloudinary_api_key}:${process.env.cloudinary_api_value}@api.cloudinary.com/v1_1/itcpc-home/resources/image/tags/2022_appointment?max_results=500`)
+//         .then(res => {
 
-            const results = res.data.resources;
-            const photosToImport = [];
+//             const results = res.data.resources;
+//             const photosToImport = [];
 
-            for (let result in results) {
-                let item = results[result];
-                if (item.width > item.height || item.width === item.height) {
-                    photosToImport.unshift(item);
-                }
-            }
+//             for (let result in results) {
+//                 let item = results[result];
+//                 if (item.width > item.height || item.width === item.height) {
+//                     photosToImport.unshift(item);
+//                 }
+//             }
 
-            for (let photo in photosToImport) {
-                let url = photosToImport[photo].secure_url;
-                let event = '2022appointment';
-                let date = '2022-01-02';
-                let title = '2022 신년 임직식';
-                let width = photosToImport[photo].width;
-                let height = photosToImport[photo].height;
+//             for (let photo in photosToImport) {
+//                 let url = photosToImport[photo].secure_url;
+//                 let event = '2022appointment';
+//                 let date = '2022-01-02';
+//                 let title = '2022 신년 임직식';
+//                 let width = photosToImport[photo].width;
+//                 let height = photosToImport[photo].height;
 
-                Photo.create({
-                    url: url,
-                    event: event,
-                    title: title,
-                    width: width,
-                    height: height,
-                    together: event + title + date
-                })
-                    .then(photo => {
-                        // console.log('new photo created', photo);
-                        console.log('completed', photo);
-                    })
-                    .catch(error => {
-                        console.log('error', error);
-                    });
-            }
-        })
+//                 Photo.create({
+//                     url: url,
+//                     event: event,
+//                     title: title,
+//                     width: width,
+//                     height: height,
+//                     together: event + title + date
+//                 })
+//                     .then(photo => {
+//                         // console.log('new photo created', photo);
+//                         console.log('completed', photo);
+//                     })
+//                     .catch(error => {
+//                         console.log('error', error);
+//                     });
+//             }
+//         })
 
 
-        .catch(err => {
-            console.log(err);
-        });
+//         .catch(err => {
+//             console.log(err);
+//         });
 
-}
+// }
 
-getImages();
+// getImages();
 
 // function listResources(next_cursor) {
 //     if (next_cursor) {
@@ -247,3 +247,12 @@ getImages();
 //     });
 // }
 // listResources(null);
+
+GlobalMission.updateOne(
+    {},
+    {
+        $push:{
+            
+        }
+    }
+)
