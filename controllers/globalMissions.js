@@ -46,6 +46,9 @@ router.get('/:id', (req, res) => {
 router.post('/new', (req, res) => {
     const newMissionGroup = {
         groupName: req.body.groupName,
+        globalMissionsLeader: req.body.globalMissionsLeader,
+        secretary: req.body.secretary,
+        treasurer: req.body.treasurer,
         teamLead: req.body.teamLead,
         member: req.body.member
     };
