@@ -43,7 +43,7 @@ router.get('/:id', (req, res) => {
 });
 
 // POST route for /globalMissions/new
-router.post('/new', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.post('/new', (req, res) => {
     const newMissionGroup = {
         groupName: req.body.groupName,
         teamLead: req.body.teamLead,
