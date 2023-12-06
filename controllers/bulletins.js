@@ -65,8 +65,14 @@ router.get('/:id', (req, res) => {
 
 // POST route for /bulletins/new
 router.post('/new', passport.authenticate('jwt', { session: false }), (req, res) => {
+    let title = '';
+    if (req.body.kmEm === 'km') {
+        title = '주보';
+    } else {
+        title = 'Bulletin';
+    }
     const newBulletin = {
-        title: '주보',
+        title: title,
         special_title: req.body.special_title,
         content: req.body.content,
         date: req.body.date,
