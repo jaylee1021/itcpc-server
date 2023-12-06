@@ -29,6 +29,24 @@ router.get('/', (req, res) => {
         });
 });
 
+router.get('/:kmEm', (req, res) => {
+    Bulletin.find({ kmEm: req.params.kmEm })
+        .then(bulletins => {
+            if (bulletins) {
+                bulletins.sort((a, b) => {
+                    return new Date(b.date) - new Date(a.date);
+                });
+                return res.json({ bulletins: bulletins });
+            } else {
+                return res.json({ message: 'No bulletins exists' });
+            }
+        })
+        .catch(error => {
+            console.log('error', error);
+            return res.json({ message: 'this is an issue, please try again' });
+        });
+});
+
 // GET route for /bulletins/:id
 router.get('/:id', (req, res) => {
     Bulletin.findById(req.params.id)

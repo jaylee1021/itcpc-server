@@ -5,6 +5,7 @@ const bulletinSchema = new mongoose.Schema({
     special_title: String,
     content: { type: String, required: true },
     date: { type: Date, required: true },
+    kmEm: { type: String, required: true },
     count: Number
 }, { timestamps: true });
 
