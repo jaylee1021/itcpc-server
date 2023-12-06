@@ -70,6 +70,7 @@ router.post('/new', passport.authenticate('jwt', { session: false }), (req, res)
         special_title: req.body.special_title,
         content: req.body.content,
         date: req.body.date,
+        kmEm: req.body.kmEm,
         count: 0
     };
     Bulletin.create(newBulletin)
